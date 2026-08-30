@@ -1,0 +1,12 @@
+<div class="classes-page">
+  <h2>Choose a character class</h2>
+  <div class="class-list" data-testid="class-list">
+    @for (characterClass of characterClasses; track characterClass.id) {
+    <div class="class-card">
+      <h3>{{ characterClass.name }}</h3>
+      <p>{{ characterClass.description }}</p>
+      <a [routerLink]="['/classes', characterClass.id]">View details →</a>
+    </div>
+    }
+  </div>
+</div>
