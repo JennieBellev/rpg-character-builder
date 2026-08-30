@@ -1,3 +1,4 @@
+import { AbilityRollerComponent } from './ability-roller/ability-roller.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ClassesComponent } from './classes/classes.component';
@@ -21,5 +22,7 @@ export const routes: Routes = [
     path: 'about',
     component: AboutComponent,
     data: { title: 'About the RPG Character Builder' }
-  }
+  },
+  { path: 'roll/:sides', component: AbilityRollerComponent },
+  { path: 'roll', redirectTo: 'roll/6', pathMatch: 'full' }
 ];

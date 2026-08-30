@@ -1,0 +1,20 @@
+<section class="roller-container">
+  <div class="roller-card">
+    <header class="roller-header">
+      <h2 class="roller-title">Ability Score Roller</h2>
+      <span class="die-badge">Die: d{{ sides }}</span>
+    </header>
+
+    <div class="dice-display">
+      <div class="dice-box" data-testid="roll-result">
+        {{ rollResult !== null ? rollResult : '-' }}
+      </div>
+    </div>
+
+    <button class="btn-roll" type="button" data-testid="roll-button" (click)="rollAbility()">
+      Roll Ability
+    </button>
+
+    <p class="roller-hint">The result is always between 1 and {{ sides }}.</p>
+  </div>
+</section>
