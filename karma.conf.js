@@ -8,12 +8,12 @@ module.exports = function (config) {
       { pattern: 'src/**/*.spec.ts', type: 'js' }
     ],
     frameworks: ['jasmine'],
-    plugins: [
-      require('karma-firefox-launcher'),
+plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage')
+      require('karma-coverage'),
+      require('karma-firefox-launcher')
     ],
     client: {
       jasmine: {
