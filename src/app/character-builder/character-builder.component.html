@@ -1,0 +1,51 @@
+<!-- The Form -->
+<form id="character-form" #characterForm="ngForm" (ngSubmit)="onSubmit(); characterForm.resetForm(characterModel)">
+
+  <!-- Name (Required) -->
+  <div>
+    <label for="character-name">Name</label>
+    <input type="text" id="character-name" name="character-name" [(ngModel)]="characterModel.name" required>
+  </div>
+
+  <!-- Class (Required) -->
+  <div>
+    <label for="character-class">Class</label>
+    <select id="character-class" name="character-class" [(ngModel)]="characterModel.characterClass" required>
+      <option value="" disabled>Select a class</option>
+      <option value="Wizard">Wizard</option>
+      <option value="Fighter">Fighter</option>
+      <option value="Rogue">Rogue</option>
+      <option value="Cleric">Cleric</option>
+    </select>
+  </div>
+
+  <!-- Level (Required, Min 1, Max 20) -->
+  <div>
+    <label for="character-level">Level</label>
+    <input type="number" id="character-level" name="character-level" [(ngModel)]="characterModel.level" min="1" max="20"
+      required>
+  </div>
+
+  <!-- Veteran (Checkbox) -->
+  <div>
+    <label for="character-veteran">Veteran</label>
+    <input type="checkbox" id="character-veteran" name="character-veteran" [(ngModel)]="characterModel.veteran">
+  </div>
+
+  <!-- Submit Button (Disabled until requirements are met) -->
+  <button type="submit" id="character-submit" [disabled]="characterForm.invalid">Create character</button>
+
+</form>
+
+<!-- The Output List -->
+<div id="character-list">
+  <h3>Created Characters</h3>
+
+  @for (char of characters; track char.name) {
+  <div style="border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+    <p><strong>{{ char.name }}</strong></p>
+    <p>{{ char.characterClass }} · Level {{ char.level }}</p>
+    <p>Starting hit points: {{ char.startingHitPoints }}</p>
+  </div>
+  }
+</div>

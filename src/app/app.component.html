@@ -1,7 +1,12 @@
 <nav>
-  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a> |
-  <a routerLink="/classes" routerLinkActive="active">Classes</a> |
-  <a routerLink="/about" routerLinkActive="active">About</a>
+<a routerLink="/home">Home</a> |
+<a routerLink="/classes">Classes</a> |
+<a routerLink="/about">About</a> |
+<a routerLink="/builder">Builder</a>
+
+<hr>
+
+<router-outlet></router-outlet>
 </nav>
 
 <main>
