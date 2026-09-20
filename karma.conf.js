@@ -4,16 +4,14 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    files: [
-      { pattern: 'src/**/*.spec.ts', type: 'js' }
-    ],
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
 plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
-      require('karma-firefox-launcher')
+      require('karma-firefox-launcher'),
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       jasmine: {
@@ -37,6 +35,6 @@ plugins: [
     },
     reporters: ['progress', 'kjhtml'],
     browsers: ['FirefoxHeadless'],
-    restartOnFileChange: true
+    restartOnFileChange: false
   });
 };

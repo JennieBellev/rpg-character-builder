@@ -1,0 +1,75 @@
+<div class="container">
+  <h2>Character Profile</h2>
+
+  <!-- The Reactive Form, tied to the profileForm FormGroup -->
+  <form id="profile-form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <!-- Textarea for Backstory -->
+    <div id="backstory" class="form-section">
+      <label for="backstoryInput">Backstory:</label>
+      <textarea id="backstoryInput" formControlName="backstory" rows="4"></textarea>
+    </div>
+
+    <!-- Radio Buttons for Alignment -->
+    <div id="alignment-group" class="form-section">
+      <label>Alignment:</label>
+      <div>
+        <input type="radio" id="lawfulGood" value="Lawful Good" formControlName="alignment">
+        <label for="lawfulGood">Lawful Good</label>
+      </div>
+      <div>
+        <input type="radio" id="neutralGood" value="Neutral Good" formControlName="alignment">
+        <label for="neutralGood">Neutral Good</label>
+      </div>
+      <div>
+        <input type="radio" id="chaoticGood" value="Chaotic Good" formControlName="alignment">
+        <label for="chaoticGood">Chaotic Good</label>
+      </div>
+    </div>
+
+    <!-- The tricky FormArray Checkboxes! -->
+    <div id="skill-options" class="form-section" formArrayName="skills">
+      <label>Skills:</label>
+      <!-- Loop over the controls the TypeScript boss gave -->
+      @for (skillControl of skillsArray.controls; track $index) {
+      <div>
+        <!-- $index keeps track of which checkbox belongs to which skill -->
+        <input type="checkbox" [formControlName]="$index" [id]="skills[$index].id">
+        <label [for]="skills[$index].id">{{ skills[$index].label }}</label>
+      </div>
+      }
+    </div>
+
+    <!-- Dropdown Select for Homeland -->
+    <div id="homeland" class="form-section">
+      <label for="homelandSelect">Homeland:</label>
+      <select id="homelandSelect" formControlName="homeland">
+        <option value="" disabled>Select a homeland...</option>
+        @for (h of homelands; track h.id) {
+        <option [value]="h.label">{{ h.label }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Submit Button (Disabled until the boss says the form is valid!) -->
+    <button type="submit" id="profile-submit" [disabled]="profileForm.invalid">Save Profile</button>
+  </form>
+
+  <!-- The Output List showing the transformed data -->
+  <div id="profile-list" class="results-section">
+    <h3>Saved Profiles</h3>
+    @if (profiles.length === 0) {
+    <p>No profiles saved yet.</p>
+    }
+    @for (profile of profiles; track $index) {
+    <div class="profile-card">
+      <p><strong>Homeland:</strong> {{ profile.homeland }}</p>
+      <p><strong>Alignment:</strong> {{ profile.alignment }}</p>
+      <!-- Notice how this displays actual words instead of true/false! -->
+      <p><strong>Skills:</strong> {{ profile.skills.join(', ') }}</p>
+      <p><strong>Backstory:</strong> {{ profile.backstory }}</p>
+      <hr>
+    </div>
+    }
+  </div>
+</div>

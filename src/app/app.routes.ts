@@ -5,6 +5,7 @@ import { ClassesComponent } from './classes/classes.component';
 import { ClassDetailComponent } from './class-detail/class-detail.component';
 import { AboutComponent } from './about/about.component';
 import { CharacterBuilderComponent } from './character-builder/character-builder.component';
+import { CharacterProfileComponent } from './character-profile/character-profile.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,6 @@ export const routes: Routes = [
   },
   { path: 'roll/:sides', component: AbilityRollerComponent },
   { path: 'roll', redirectTo: 'roll/6', pathMatch: 'full' },
-  { path: 'builder', component: CharacterBuilderComponent }
+  { path: 'builder', component: CharacterBuilderComponent },
+  { path: 'profile', component: CharacterProfileComponent }
 ];
